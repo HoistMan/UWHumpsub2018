@@ -1,6 +1,6 @@
 // AutomatedPitch
 // UW Human Powered Submarine
-// (YOUR NAME HERE)
+// Aiden
 // (DATE)
 // Supplies automated pitch control inputs to main control microcontroller
  
