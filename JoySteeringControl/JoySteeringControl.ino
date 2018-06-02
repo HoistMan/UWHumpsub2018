@@ -17,7 +17,7 @@ const int yPin = 3;
 const int zPin = 4;
 const int jumpRange = 7;
 
-// Actuator/H-bridge
+/*// Actuator/H-bridge
 const int feedbackPin = 0;
 const int maxPos = 930;
 const int minPos = 810;
@@ -27,14 +27,16 @@ boolean retract;
 const int hbIn1 = 2;    
 const int hbIn2 = 4;
 const int hbPWM = 6;
-const int hbSTBY = 11;
+const int hbSTBY = 11;*/
 
 // Servos
 Servo servoP; // port servo
 Servo servoS; // starboard servo
+Servo servoR; // rudder servo
 const int angleRange = 15;  // angle range in each direction
 const int startAngle = 78;
 const int startAngle2 = 107;
+const int startAngleR = 90;
 
 void setup() {
   Serial.begin(9600); // begin for terminal debugging
@@ -44,6 +46,7 @@ void setup() {
   pinMode(hbSTBY, OUTPUT);
   servoP.attach(9);
   servoS.attach(10);
+  servoR.attach(11);
   pinMode(13, OUTPUT);
   pinMode(12, OUTPUT);
   pinMode(0, OUTPUT);
@@ -87,12 +90,16 @@ void loop() {
      }
   }
 
-   Serial.print("Actuator target: ");
-   Serial.println(targetPos);
-   Serial.print("Actuator current: ");
-   Serial.println(currActPos);
+   //Serial.print("Actuator target: ");
+   //Serial.println(targetPos);
+   //Serial.print("Actuator current: ");
+   //Serial.println(currActPos);
   
   // set servo outputs ================================
+  Serial.print("joystick input x: ");
+  Serial.println(Ax);
+  Serial.print("joystick input y: ");
+  Serial.println(Ay);
   int servoOut = map(Ax, 0, 1023, startAngle-angleRange, startAngle+angleRange);
   int servoOut2 = map(Ax, 0, 1023, startAngle2+angleRange, startAngle2-angleRange);
   Serial.print("Servo target angle: ");
